@@ -56,16 +56,16 @@
     Некоторые элементы, которые не
     переключаются автоматически на темную тему
 ==========*/
-.dark .button__gray{
+.dark .stats__info{
+  background-color: var(--container-color);
+}
+
+/* .dark .button__gray{
   background-color: var(--container-color);
 }
 
 .dark .button__gray:hover{
   background-color: hsl(var(--hue), 24%, 16%);
-}
-
-.dark .filters__content{
-  background-color: var(--container-color);
 }
 
 .dark::-webkit-scrollbar{
@@ -78,7 +78,7 @@
 
 .dark::-webkit-scrollbar-thumb:hover{
   background-color: hsl(var(--hue), 8%, 32%);
-}
+} */
 
 h1, h2, h3 {
   color: var(--title-color);

@@ -3,8 +3,8 @@ import { useTelegram } from "./hooks/useTelegram";
 import './App.css';
 import Profile from "./components/Profile/Profile";
 import { Route, Routes } from 'react-router-dom'
-import ProductList from "./components/ProductList/ProductList";
-import Form from "./components/Form/Form";
+// import ProductList from "./components/ProductList/ProductList";
+// import Form from "./components/Form/Form";
 // const backendUrl = "http://127.0.0.1:5000"; // for local development
 
 function App() {
@@ -47,13 +47,11 @@ function App() {
   //   </div>
   // );
 
-  console.log(telegram.initDataUnsafe)
-
   return (
     <div className={`App ${telegram.colorScheme}`}>
-      <Profile />
+      {/* <Profile /> */}
       <Routes>
-        {/* <Route index element={<ProductList />}/> */}
+        <Route index element={<Profile />}/>
         {/* <Route path={'/form'} element={<Form />}/> */}
       </Routes>
       {/* <button onClick={onToggleButton}>toggle</button> */}
