@@ -44,7 +44,7 @@ const Profile = () => {
                     </div>
                 </div>
 
-                <Button className={"profile__button"}>Написать отзыв</Button>
+                <button className={"profile__button"}>Написать отзыв</button>
             </div>
         </div>
     );
