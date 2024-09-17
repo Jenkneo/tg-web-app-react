@@ -1,62 +1,46 @@
 import { useEffect, useState } from 'react';
 import { useTelegram } from "./hooks/useTelegram";
+import { useUserVerification } from "./hooks/useUserVerification";
 import './App.css';
 import Profile from "./components/Profile/Profile";
-import Navigation from './components/Navigation/Navigation';
+import EnergyList from "./components/EnergyList/EnergyList";
+import Energy from "./components/Energy/Energy";
+// import Navigation from './components/Navigation/Navigation';
 import { Route, Routes } from 'react-router-dom'
-// import ProductList from "./components/ProductList/ProductList";
-// import Form from "./components/Form/Form";
-// const backendUrl = "http://127.0.0.1:5000"; // for local development
+
 
 function App() {
-  const [result, setResult] = useState(null);
-  const { telegram, onToggleButton } = useTelegram(); 
-
+  // const [ result, setResult ] = useState(null);
+  const { telegram } = useTelegram();
+  const { result, verifyUser } = useUserVerification(telegram);
 
   useEffect(() => {
     telegram.ready();
-  }, [])
+  }, telegram);
 
-  // const verifyUser = async (authorizationData) => {
-  //   try {
-  //     const response = await fetch(`${backendUrl}/auth/verify`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(authorizationData),
-  //     });
-
-  //     const data = await response.json();
-  //     if (data.success) {
-  //       setResult('Verification successful!');
-  //     } else {
-  //       setResult(`Verification failed: ${data.message}`);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error during verification:', error);
-  //     setResult('An error occurred during verification.');
-  //   }
-  // };
+  // useEffect(() => {
+  //   verifyUser(telegram.initData); // Автоматическая верификация при монтировании компонента
+  // }, verifyUser);
 
   // return (
   //   <div className="App">
   //     <div>
-  //       <button onClick={() => verifyUser(telegram.initData)}>Verify User</button>
-  //       <p>{result}</p>
+  //       <p>{result}</p> {/* Выводим результат верификации */}
   //     </div>
   //   </div>
   // );
-
+  
   return (
     <div className={`App ${telegram.colorScheme}`}>
+      {/* <EnergyList /> */}
       {/* <Profile /> */}
       <Routes>
         <Route index element={<Profile />}/>
-        {/* <Route path={'/form'} element={<Form />}/> */}
+        <Route path={'/energy'} element={<EnergyList />}/>
+        <Route path={"/energy/:id"} element={<Energy />} />
       </Routes>
       {/* <button onClick={onToggleButton}>toggle</button> */}
-      <Navigation />
+      {/* <Navigation /> */}
     </div>
   );
 }
