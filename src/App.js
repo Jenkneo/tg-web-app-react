@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTelegram } from "./hooks/useTelegram";
 import './App.css';
 import Profile from "./components/Profile/Profile";
+import Navigation from './components/Navigation/Navigation';
 import { Route, Routes } from 'react-router-dom'
 // import ProductList from "./components/ProductList/ProductList";
 // import Form from "./components/Form/Form";
@@ -55,6 +56,7 @@ function App() {
         {/* <Route path={'/form'} element={<Form />}/> */}
       </Routes>
       {/* <button onClick={onToggleButton}>toggle</button> */}
+      <Navigation />
     </div>
   );
 }

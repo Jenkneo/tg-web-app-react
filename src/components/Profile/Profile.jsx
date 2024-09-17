@@ -1,5 +1,5 @@
 import React from 'react';
-// import Button from '../Button/Button';
+import Button from '../Button/Button';
 import {useTelegram} from '../../hooks/useTelegram';
 import imagePlaceholder from './image_placeholder.png';
 import './Profile.css';

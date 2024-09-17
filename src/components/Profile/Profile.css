@@ -5,7 +5,7 @@
 
 .profile{
     position: relative;
-    padding-top: 3.5rem;
+    padding-top: 2rem;
 }
 
 .container {
@@ -107,6 +107,7 @@
   border-radius: .5rem;
   transition: .3s;
   box-shadow: 0 8px 24px hsla(var(--hue), var(--sat), var(--lig), .25);
+  text-align: center;
 }
 
 .profile__button:hover {
