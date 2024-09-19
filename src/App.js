@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
+import { Route, Routes, useNavigate, useLocation  } from 'react-router-dom'
+import { BackButton } from '@vkruglikov/react-telegram-web-app';
+
 import { useTelegram } from "./hooks/useTelegram";
 import { useUserVerification } from "./hooks/useUserVerification";
+
 import './App.css';
+
 import Profile from "./components/Profile/Profile";
 import EnergyList from "./components/EnergyList/EnergyList";
 import Energy from "./components/Energy/Energy";
 // import Navigation from './components/Navigation/Navigation';
-import { Route, Routes } from 'react-router-dom'
 
 
 function App() {
@@ -14,9 +18,22 @@ function App() {
   const { telegram } = useTelegram();
   const { result, verifyUser } = useUserVerification(telegram);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [showBackButton, setShowBackButton] = useState(true);
+
   useEffect(() => {
     telegram.ready();
   }, telegram);
+
+  useEffect(() => {
+    // Проверяем, если это главная страница или история пуста
+    if (location.pathname === '/' || window.history.length === 1) {
+      setShowBackButton(false); // Скрыть кнопку назад
+    } else {
+      setShowBackButton(true); // Показать кнопку назад
+    }
+  }, [location]);
 
   // useEffect(() => {
   //   verifyUser(telegram.initData); // Автоматическая верификация при монтировании компонента
@@ -39,8 +56,9 @@ function App() {
         <Route path={'/energy'} element={<EnergyList />}/>
         <Route path={"/energy/:id"} element={<Energy />} />
       </Routes>
-      {/* <button onClick={onToggleButton}>toggle</button> */}
+      {showBackButton && <BackButton onClick={() => navigate(-1)} />}
       {/* <Navigation /> */}
+      <goBack />
     </div>
   );
 }
