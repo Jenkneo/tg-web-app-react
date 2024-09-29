@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import useEnergyDetails from '../../../hooks/useEnergyDetails';
 import './EnergyCard.css';
 
 const ProductDetail = () => {
     const { id } = useParams();
+    const { product, loading, error } = useEnergyDetails(id);
+
+    if (loading) {
+        return <div>Загрузка...</div>;
+    }
+
+    if (error) {
+        return <div>Ошибка: {error}</div>;
+    }
+
+    if (!product) {
+        return <div>Продукт не найден.</div>;
+    }
 
     return (
         <div className="product-card">
-            <div className="product-name">Original</div>
-            <div className="product-brand">Brand: Adrenaline</div>
-            <div className="product-rating">Rating: 9.45</div>
+            <h2 className="product-name">{product.name}</h2>
+            <p className="product-brand">Бренд: {product.brand.name}</p>
+            <p className="product-rating">Рейтинг: {product.rating || 'Нет рейтинга'}</p>
             <div className="product-description">
-                Lorem ipsum dolor sit amet.
+                {product.description}
             </div>
         </div>
     );
