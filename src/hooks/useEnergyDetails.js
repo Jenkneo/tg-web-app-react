@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import config from '../config';
 
 const useProductDetails = (id) => {
     const [product, setProduct] = useState(null);
@@ -8,7 +9,7 @@ const useProductDetails = (id) => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/energy/${id}`);
+                const response = await fetch(`${config.API_URL}/energy/${id}`);
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status} ${response.statusText}`);
                 }
